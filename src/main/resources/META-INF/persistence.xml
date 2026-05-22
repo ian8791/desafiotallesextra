@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+  <persistence-unit name="bibliotecaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>com.biblioteca.model.User</class>
+    <class>com.biblioteca.model.Book</class>
+    <properties>
+      <!-- runtime overrides will be provided programmatically -->
+    </properties>
+  </persistence-unit>
+</persistence>
