@@ -1,0 +1,14 @@
+# Ignore environment configuration
+.env
+
+# Maven target directory
+/target/
+
+# IntelliJ / Eclipse
+*.iml
+.idea/
+*.classpath
+*.project
+
+# macOS
+.DS_Store

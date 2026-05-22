@@ -83,13 +83,28 @@ public class App {
             System.out.println("ViaCEP: " + ex.getMessage());
         }
 
-        ur.save(u);
-        System.out.println("Usuário criado com id=" + u.getId());
+        try {
+            ur.save(u);
+            System.out.println("Usuário criado com id=" + u.getId());
+        } catch (Exception ex) {
+            System.out.println("Falha ao salvar usuário. Verifique conexão MySQL e as credenciais no arquivo .env.");
+            ex.printStackTrace();
+        }
     }
 
-    private static void listUsers(UserRepository ur) throws IOException {
-        List<User> all = ur.findAll();
-        all.forEach(s -> System.out.println(s));
+    private static void listUsers(UserRepository ur) {
+        try {
+            List<User> all = ur.findAll();
+            if (all.isEmpty()) {
+                System.out.println("Nenhum usuário encontrado.");
+                return;
+            }
+            System.out.println("Usuários cadastrados:");
+            all.forEach(s -> System.out.println(s));
+        } catch (Exception ex) {
+            System.out.println("Falha ao listar usuários. Verifique conexão MySQL e credenciais em .env.");
+            ex.printStackTrace();
+        }
     }
 
     private static void updateUser(UserRepository ur) throws IOException {
@@ -133,6 +148,11 @@ public class App {
 
     private static void listBooks(BookRepository br) throws IOException {
         List<Book> all = br.findAll();
+        if (all.isEmpty()) {
+            System.out.println("Nenhum livro encontrado.");
+            return;
+        }
+        System.out.println("Livros cadastrados:");
         all.forEach(System.out::println);
     }
 }
